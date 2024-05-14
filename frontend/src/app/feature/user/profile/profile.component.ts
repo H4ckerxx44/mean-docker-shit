@@ -1,29 +1,34 @@
-import { Component, OnInit } from "@angular/core";
-import { UserService } from "@core/services/user.service";
-import { User } from "@core/models/user.interface";
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import { Router } from "@angular/router";
-import { ValidationService } from "@core/components/validation-errors/validation-messages.service";
+import {Component, OnInit} from "@angular/core";
+import {UserService} from "@core/services/user.service";
+import {User} from "@core/models/user.interface";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
+import {ValidationService} from "@core/components/validation-errors/validation-messages.service";
 
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit
+{
   user: User;
   profileForm: UntypedFormGroup;
   passwordForm: UntypedFormGroup;
+
   constructor(
     private usreService: UserService,
     private formBuilder: UntypedFormBuilder,
     private validationService: ValidationService,
     private toastrService: ToastrService,
     private router: Router
-  ) {}
+  )
+  {
+  }
 
-  createProfileForm() {
+  createProfileForm()
+  {
     this.profileForm = this.formBuilder.group({
       _id: [""],
       firstName: ["", Validators.required],
@@ -32,7 +37,9 @@ export class ProfileComponent implements OnInit {
       mobile: ["", [Validators.required, Validators.minLength(10)]]
     });
   }
-  createPasswordForm() {
+
+  createPasswordForm()
+  {
     this.passwordForm = this.formBuilder.group(
       {
         username: ["", Validators.required],
@@ -45,37 +52,50 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  resetProfileForm() {
+  resetProfileForm()
+  {
     this.profileForm.reset();
     this.profileForm.patchValue(this.usreService.getCurrentUser());
   }
-  updateProfile() {
+
+  updateProfile()
+  {
     this.usreService.update(this.profileForm.value).subscribe(
-      (data) => {
+      (data) =>
+      {
         this.toastrService.success("Profile updated successful");
         const user = data;
         user.token = this.user.token;
         localStorage.setItem("currentUser", JSON.stringify(user));
       },
-      (error) => {}
+      (error) =>
+      {
+      }
     );
   }
 
-  resetPasswordForm() {
+  resetPasswordForm()
+  {
     this.passwordForm.reset();
     this.passwordForm.get("username").patchValue(this.user.username);
   }
-  updatePassword() {
+
+  updatePassword()
+  {
     this.usreService.changePassword(this.user._id, this.passwordForm.get("password").value).subscribe(
-      (data) => {
+      (data) =>
+      {
         this.toastrService.success("Profile updated successful");
         this.router.navigate(["/login"]);
       },
-      (error) => {}
+      (error) =>
+      {
+      }
     );
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     this.createProfileForm();
     this.createPasswordForm();
     this.user = this.usreService.getCurrentUser();

@@ -1,6 +1,5 @@
 # NGINX - loadbalancer Image
 
-
 ## nginx Dockerfile
 
 ```dockerfile
@@ -18,6 +17,7 @@ EXPOSE 8000
 CMD ["nginx", "-g", "daemon off;"\]](README.md)
 
 ```
+
 ### NGINX config
 
  ```

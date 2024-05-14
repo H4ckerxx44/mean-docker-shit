@@ -9,29 +9,29 @@
               <h4 class="mb-0">Basic Information</h4>
             </div>
             <div class="card-body">
-              <form class="form" [formGroup]="profileForm" name="profileForm" novalidate autocomplete="off">
+              <form [formGroup]="profileForm" autocomplete="off" class="form" name="profileForm" novalidate>
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label">First name</label>
                   <div class="col-lg-9">
-                    <input class="form-control" type="text" name="firstName" formControlName="firstName" />
+                    <input class="form-control" formControlName="firstName" name="firstName" type="text"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                   <div class="col-lg-9">
-                    <input class="form-control" type="text" name="lastName" formControlName="lastName" />
+                    <input class="form-control" formControlName="lastName" name="lastName" type="text"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label">Email</label>
                   <div class="col-lg-9">
-                    <input class="form-control" type="email" name="email" formControlName="email" />
+                    <input class="form-control" formControlName="email" name="email" type="email"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label">Mobile</label>
                   <div class="col-lg-9">
-                    <input class="form-control" type="text" name="mobile" formControlName="mobile" />
+                    <input class="form-control" formControlName="mobile" name="mobile" type="text"/>
                   </div>
                 </div>
 
@@ -39,8 +39,8 @@
                   <div class="col-lg-6"></div>
                   <div class="col-lg-6">
                     <div class="btn-group float-right mt-2" role="group">
-                      <input (click)="resetProfileForm()" type="submit" class="btn btn-secondary" value="Reset" />
-                      <input (click)="updateProfile()" type="button" class="btn btn-primary" value="Update" />
+                      <input (click)="resetProfileForm()" class="btn btn-secondary" type="submit" value="Reset"/>
+                      <input (click)="updateProfile()" class="btn btn-primary" type="button" value="Update"/>
                     </div>
                   </div>
                 </div>
@@ -53,7 +53,8 @@
     </div>
   </tab>
   <tab heading="Password"
-    ><div class="container py-3">
+  >
+    <div class="container py-3">
       <div class="row">
         <div class="mx-auto col-sm-6">
           <!-- form user info -->
@@ -62,35 +63,36 @@
               <h4 class="mb-0">Password Update</h4>
             </div>
             <div class="card-body">
-              <form class="form" [formGroup]="passwordForm" name="passwordForm" novalidate autocomplete="off">
+              <form [formGroup]="passwordForm" autocomplete="off" class="form" name="passwordForm" novalidate>
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label">Username</label>
                   <div class="col-lg-9">
-                    <input disabled class="form-control" type="text" name="username" formControlName="username" />
+                    <input class="form-control" disabled formControlName="username" name="username" type="text"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label">Password</label>
                   <div class="col-lg-9">
-                    <input class="form-control" type="password" name="password" formControlName="password" />
+                    <input class="form-control" formControlName="password" name="password" type="password"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label">Confirm</label>
                   <div class="col-lg-9">
-                    <input class="form-control" type="password" name="confirmPassword" formControlName="confirmPassword" />
+                    <input class="form-control" formControlName="confirmPassword" name="confirmPassword"
+                           type="password"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-6"></div>
                   <div class="col-lg-6">
                     <div class="btn-group float-right mt-2" role="group">
-                      <input type="submit" class="btn btn-secondary" (click)="resetPasswordForm()" value="Reset" />
+                      <input (click)="resetPasswordForm()" class="btn btn-secondary" type="submit" value="Reset"/>
                       <input
-                        type="button"
-                        [disabled]="passwordForm.invalid"
                         (click)="updatePassword()"
+                        [disabled]="passwordForm.invalid"
                         class="btn btn-primary"
+                        type="button"
                         value="Update"
                       />
                     </div>
@@ -102,6 +104,7 @@
           <!-- /form user info -->
         </div>
       </div>
-    </div></tab
+    </div>
+  </tab
   >
 </tabset>

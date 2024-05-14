@@ -1,25 +1,29 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { ContactListComponent } from './contact-list.component';
+import {ContactListComponent} from './contact-list.component';
 
-describe('ContactListComponent', () => {
+describe('ContactListComponent', () =>
+{
   let component: ContactListComponent;
   let fixture: ComponentFixture<ContactListComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(waitForAsync(() =>
+  {
     TestBed.configureTestingModule({
-      declarations: [ ContactListComponent ]
+      declarations: [ContactListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(() =>
+  {
     fixture = TestBed.createComponent(ContactListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', () =>
+  {
     expect(component).toBeTruthy();
   });
 });

@@ -7,32 +7,33 @@
             <article class="card-body">
               <a [routerLink]="['/login']" class="float-right btn btn-outline-primary">Sign in</a>
               <h4 class="card-title mb-4 mt-1">Register</h4>
-              <form (submit)="register()" novalidate autocomplete="off" [formGroup]="registerForm" class="row g-3">
+              <form (submit)="register()" [formGroup]="registerForm" autocomplete="off" class="row g-3" novalidate>
                 <div class="col-sm-12 col-md-12">
                   <label>First Name</label>
-                  <input type="text" formControlName="firstName" name="firstName" class="form-control" />
+                  <input class="form-control" formControlName="firstName" name="firstName" type="text"/>
                 </div>
                 <div class="col-sm-12 col-md-12">
                   <label>Last Name</label>
-                  <input name="lastName" class="form-control" type="text" formControlName="lastName" />
+                  <input class="form-control" formControlName="lastName" name="lastName" type="text"/>
                 </div>
                 <div class="col-sm-12 col-md-12">
                   <label>Your email</label>
-                  <input class="form-control" type="email" name="username" formControlName="username" />
+                  <input class="form-control" formControlName="username" name="username" type="email"/>
                 </div>
                 <div class="col-sm-12 col-md-12">
                   <label>Your password</label>
-                  <input class="form-control" type="password" name="password" formControlName="password" />
+                  <input class="form-control" formControlName="password" name="password" type="password"/>
                 </div>
                 <div class="col-sm-12 col-md-12">
                   <label>Confirm password</label>
-                  <input class="form-control" type="password" name="confirmPassword" formControlName="confirmPassword" />
+                  <input class="form-control" formControlName="confirmPassword" name="confirmPassword" type="password"/>
                 </div>
                 <div class="col-sm-12 col-md-12 mt-3">
                   <!-- checkbox .// -->
                   <!-- form-group// -->
                   <div class="form-group">
-                    <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary btn-block">Register</button>
+                    <button [disabled]="registerForm.invalid" class="btn btn-primary btn-block" type="submit">Register
+                    </button>
                   </div>
                 </div>
                 <!-- form-group// -->

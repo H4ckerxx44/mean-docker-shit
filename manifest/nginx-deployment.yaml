@@ -11,7 +11,7 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: nginx
-  strategy: {}
+  strategy: { }
   template:
     metadata:
       creationTimestamp: null
@@ -24,6 +24,6 @@ spec:
           name: mean-nginx
           ports:
             - containerPort: 80
-          resources: {}
+          resources: { }
       restartPolicy: Always
-status: {}
+status: { }

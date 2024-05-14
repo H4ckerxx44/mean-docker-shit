@@ -2,11 +2,10 @@
 
 ## Mongo DB Seed data
 
-We have used mongo db image and for data seed used `docker-entrypoint-initdb.d` and shell script is in file `init-mongo.sh`
-
+We have used mongo db image and for data seed used `docker-entrypoint-initdb.d` and shell script is in
+file `init-mongo.sh`
 
 Also, we have used mongo import to seed data :
-
 
 ```bat
 mongoimport --jsonArray --authenticationDatabase=admin \
@@ -18,7 +17,8 @@ mongoimport --jsonArray --authenticationDatabase=admin \
    --collection Contacts \
    /docker-entrypoint-initdb.d/data.json
 ```
-Here, we have added database credentials for our new database. 
+
+Here, we have added database credentials for our new database.
 
 ```bat
 #!/bin/bash

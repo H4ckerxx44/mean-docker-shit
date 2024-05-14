@@ -1,19 +1,22 @@
-import { InjectionToken, ValueSansProvider, FactorySansProvider, Type } from '@angular/core';
-import { ErrorsMap } from './types';
-import { ValidationErrorComponent } from './Validation-messages.component';
+import {FactorySansProvider, InjectionToken, Type, ValueSansProvider} from '@angular/core';
+import {ErrorsMap} from './types';
+import {ValidationErrorComponent} from './Validation-messages.component';
 
 export const FORM_ERRORS = new InjectionToken('FORM_ERRORS', {
   providedIn: 'root',
-  factory: () => {
+  factory: () =>
+  {
     return {};
   }
 });
 
-export interface ErrorsUseValue extends ValueSansProvider {
+export interface ErrorsUseValue extends ValueSansProvider
+{
   useValue: ErrorsMap;
 }
 
-export interface ErrorsUseFactory extends FactorySansProvider {
+export interface ErrorsUseFactory extends FactorySansProvider
+{
   useFactory: (...args: any[]) => ErrorsMap;
 }
 

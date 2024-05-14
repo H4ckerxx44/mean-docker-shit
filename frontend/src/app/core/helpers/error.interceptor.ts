@@ -1,18 +1,33 @@
-﻿import { Injectable } from "@angular/core";
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS, HttpErrorResponse } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { ToastrService } from "ngx-toastr";
+﻿import {Injectable} from "@angular/core";
+import {
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from "@angular/common/http";
+import {Observable, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private toastrService: ToastrService) {}
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+export class ErrorInterceptor implements HttpInterceptor
+{
+  constructor(private toastrService: ToastrService)
+  {
+  }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
+  {
     // extract error message from http body if an error occurs
     return next.handle(request).pipe(
-      catchError((errorResponse) => {
-        if (errorResponse instanceof HttpErrorResponse) {
-          switch (errorResponse.status) {
+      catchError((errorResponse) =>
+      {
+        if (errorResponse instanceof HttpErrorResponse)
+        {
+          switch (errorResponse.status)
+          {
             case 401: // login
               // redirect to login page
               break;
@@ -21,7 +36,9 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.toastrService.error(errorResponse.error?.message);
               break;
           }
-        } else {
+        }
+        else
+        {
         }
 
         return throwError(errorResponse.error);

@@ -7,9 +7,12 @@ var bcrypt = require("bcryptjs");
 
 const environment = require("../config/environment");
 
-exports.index = function (req, res) {
-  User.get(function (err, users) {
-    if (err) {
+exports.index = function (req, res)
+{
+  User.get(function (err, users)
+  {
+    if (err)
+    {
       res.status(400).json({
         status: "error",
         error: "Bad Request."
@@ -23,31 +26,40 @@ exports.index = function (req, res) {
   });
 };
 // Handle create user actions
-exports.new = function (req, res) {
-  User.find({ username: req.body.username.trim() }, function (err, users) {
-    if (err) {
+exports.new = function (req, res)
+{
+  User.find({username: req.body.username.trim()}, function (err, users)
+  {
+    if (err)
+    {
       res.status(400).json({
         status: "error",
         message: err
       });
     }
-    if (users && users.length > 0) {
+    if (users && users.length > 0)
+    {
       res.status(400).send({
         status: "error",
         message: req.body.username + " is already taken"
       });
-    } else {
+    }
+    else
+    {
       var user = new User();
       user.username = req.body.username;
       user.email = req.body.username;
-      if (req.body.password) {
+      if (req.body.password)
+      {
         user.password = bcrypt.hashSync(req.body.password, 10);
       }
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
       // save the user and check for errors
-      user.save(function (err) {
-        if (err) {
+      user.save(function (err)
+      {
+        if (err)
+        {
           res.status(400).json({
             status: "error",
             error: err
@@ -62,9 +74,12 @@ exports.new = function (req, res) {
   });
 };
 // Handle view user info
-exports.view = function (req, res) {
-  User.findById(req.params.user_id, function (err, user) {
-    if (err) {
+exports.view = function (req, res)
+{
+  User.findById(req.params.user_id, function (err, user)
+  {
+    if (err)
+    {
       res.status(400).json({
         status: "error",
         error: err
@@ -77,12 +92,15 @@ exports.view = function (req, res) {
   });
 };
 // Handle update user info
-exports.update = function (req, res) {
-  User.findByIdAndUpdate(req.params.user_id, req.body, { new: true }, function (
+exports.update = function (req, res)
+{
+  User.findByIdAndUpdate(req.params.user_id, req.body, {new: true}, function (
     err,
     user
-  ) {
-    if (err) {
+  )
+  {
+    if (err)
+    {
       res.status(400).json({
         status: "error",
         error: err
@@ -96,13 +114,16 @@ exports.update = function (req, res) {
   });
 };
 // Handle delete user
-exports.delete = function (req, res) {
+exports.delete = function (req, res)
+{
   User.remove(
     {
       _id: req.params.user_id
     },
-    function (err, user) {
-      if (err) {
+    function (err, user)
+    {
+      if (err)
+      {
         res.status(400).json({
           status: "error",
           error: err
@@ -116,18 +137,22 @@ exports.delete = function (req, res) {
   );
 };
 
-exports.authenticate = function (req, res) {
-  User.findOne({ username: req.body.username }, function (err, user) {
-    if (err) {
+exports.authenticate = function (req, res)
+{
+  User.findOne({username: req.body.username}, function (err, user)
+  {
+    if (err)
+    {
       res.status(400).json({
         status: "error",
         error: err
       });
     }
 
-    if (user && bcrypt.compareSync(req.body.password, user.password)) {
+    if (user && bcrypt.compareSync(req.body.password, user.password))
+    {
       // authentication successful
-      user.token = jwt.sign({ sub: user._id }, environment.secret, {
+      user.token = jwt.sign({sub: user._id}, environment.secret, {
         algorithm: "HS256"
       });
       delete user.password;
@@ -136,7 +161,9 @@ exports.authenticate = function (req, res) {
         message: "Users retrieved successfully",
         data: user
       });
-    } else {
+    }
+    else
+    {
       // authentication failed
       res.status(401).send({
         status: "error",
@@ -146,28 +173,39 @@ exports.authenticate = function (req, res) {
   });
 };
 
-exports.changePassword = function (req, res) {
-  User.findById(req.params.user_id, function (err, user) {
-    if (err) {
+exports.changePassword = function (req, res)
+{
+  User.findById(req.params.user_id, function (err, user)
+  {
+    if (err)
+    {
       res.status(400).json({
         status: "error",
         error: err
       });
     }
 
-    if (user && bcrypt.compareSync(req.body.password, user.password)) {
+    if (user && bcrypt.compareSync(req.body.password, user.password))
+    {
       // authentication successful
-      if (req.body.password) {
+      if (req.body.password)
+      {
         user.password = bcrypt.hashSync(req.body.password, 10);
       }
-      user.save(function (err) {
-        if (err) res.json(err);
+      user.save(function (err)
+      {
+        if (err)
+        {
+          res.json(err);
+        }
         res.status(202).send({
           status: "success",
           message: "Password Updated successfully"
         });
       });
-    } else {
+    }
+    else
+    {
       // authentication failed
       res.status(401).send({
         status: "error",

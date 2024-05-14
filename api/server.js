@@ -5,14 +5,14 @@ const environment = require("./config/environment");
 let cors = require("cors");
 let path = require("path");
 let bodyParser = require("body-parser");
-const { expressjwt: expressjwt } = require("express-jwt");
+const {expressjwt: expressjwt} = require("express-jwt");
 // Import Mongoose
 let mongoose = require("mongoose");
 
 //const config = require("./config.json");
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // Connect to Mongoose and set connection variable
@@ -26,12 +26,14 @@ mongoose.connect(environment.mongodb.uri, {
 mongoose.Promise = global.Promise;
 
 // On connection error
-mongoose.connection.on("error", (error) => {
+mongoose.connection.on("error", (error) =>
+{
   console.log("Database error: ", error);
 });
 
 // On successful connection
-mongoose.connection.on("connected", () => {
+mongoose.connection.on("connected", () =>
+{
   console.log("Connected to database");
 });
 
@@ -56,10 +58,14 @@ let apiRoutes = require("./api-routes");
 // Use Api routes in the App
 app.use("/api", apiRoutes);
 
-app.get("*", (req, res) => {
-  if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
+app.get("*", (req, res) =>
+{
+  if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0)
+  {
     res.sendFile(path.resolve(`public/${req.url}`));
-  } else {
+  }
+  else
+  {
     res.sendFile(path.resolve("public/index.html"));
   }
 });
@@ -69,13 +75,17 @@ app.use(
   expressjwt({
     secret: environment.secret,
     algorithms: ["HS256"],
-    getToken: function (req) {
+    getToken: function (req)
+    {
       if (
         req.headers.authorization &&
         req.headers.authorization.split(" ")[0] === "Bearer"
-      ) {
+      )
+      {
         return req.headers.authorization.split(" ")[1];
-      } else if (req.query && req.query.token) {
+      }
+      else if (req.query && req.query.token)
+      {
         return req.query.token;
       }
       return null;
@@ -92,13 +102,11 @@ app.use(
 );
 
 
-
-
-
 const HOST = "0.0.0.0";
 const port = Number(process.env.EXPRESS_PORT) || 3000;
 // start server
 // Launch app to listen to specified port
-app.listen(port, () => {
+app.listen(port, () =>
+{
   console.log(`Running  on http://${HOST}:${port}`);
 });

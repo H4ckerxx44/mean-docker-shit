@@ -5,7 +5,7 @@
     </div>
     <div class="col-sm-8">
       <div class="title-action">
-        <a href="javascript:void(0);" [routerLink]="['/contacts/create']" class="btn btn-primary pull-right">
+        <a [routerLink]="['/contacts/create']" class="btn btn-primary pull-right" href="javascript:void(0);">
           <i class="fa fa-plus-circle"></i> Add New Contact</a>
       </div>
     </div>
@@ -14,10 +14,11 @@
 
   <div class="">
     <br>
-    <ngx-datatable class="material striped" [rowHeight]="50" [rows]="contacts" [columns]="columns" [selected]="selected"
-      [selectionType]="SelectionType.single" (select)="onSelect($event)" [sortType]="SortType.multi" [limit]="5"
-      [columnMode]="'force'"
-      [footerHeight]="50" [headerHeight]="50">
+    <ngx-datatable (select)="onSelect($event)" [columnMode]="'force'" [columns]="columns" [footerHeight]="50" [headerHeight]="50"
+                   [limit]="5" [rowHeight]="50" [rows]="contacts"
+                   [selected]="selected"
+                   [selectionType]="SelectionType.single"
+                   [sortType]="SortType.multi" class="material striped">
     </ngx-datatable>
 
   </div>

@@ -1,4 +1,5 @@
-export interface Contact {
+export interface Contact
+{
   _id: string;
   lastName: string;
   mobile: string;

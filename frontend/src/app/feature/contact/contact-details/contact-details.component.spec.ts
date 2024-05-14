@@ -1,25 +1,29 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { ContactDetailsComponent } from './contact-details.component';
+import {ContactDetailsComponent} from './contact-details.component';
 
-describe('ContactDetailsComponent', () => {
+describe('ContactDetailsComponent', () =>
+{
   let component: ContactDetailsComponent;
   let fixture: ComponentFixture<ContactDetailsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(waitForAsync(() =>
+  {
     TestBed.configureTestingModule({
-      declarations: [ ContactDetailsComponent ]
+      declarations: [ContactDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(() =>
+  {
     fixture = TestBed.createComponent(ContactDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', () =>
+  {
     expect(component).toBeTruthy();
   });
 });

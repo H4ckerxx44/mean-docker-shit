@@ -8,7 +8,6 @@ Run `npm start` for a dev server. It will open `http://localhost:4200/` in your 
 
 Or you can run `npm run dev-server`. It will start frontend and api together. Open  `http://localhost:4200/` to access application.
 
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build. Also, we have enabled SSR (Server side rendering) for fast first loading of UI on production.
@@ -33,12 +32,11 @@ Next development
 
 Describes which version .
 
-| Name       | Version  |
-| ---------- | -------- |
-| bootstrap     | v4.5.3    |
-| ngx-bootstrap | v9.0.0 |
+| Name                    | Version |
+|-------------------------|---------|
+| bootstrap               | v4.5.3  |
+| ngx-bootstrap           | v9.0.0  |
 | @swimlane/ngx-datatable | v20.0.0 |
-
 
 ### Dockerfile Production
 
@@ -77,7 +75,9 @@ USER node
 CMD ["node", "dist/frontend/server/main.js"]
 
 ```
+
 ### Dockerfile Development mode
+
 ```dockerfile
 
 # Create image based off of the official 12.8-alpine

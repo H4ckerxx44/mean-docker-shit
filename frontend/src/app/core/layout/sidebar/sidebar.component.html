@@ -1,26 +1,26 @@
-<nav class="sidebar" [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }">
+<nav [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }" class="sidebar">
   <div class="list-group">
-    <a routerLink="/" [routerLinkActive]="['router-link-active']" class="list-group-item">
+    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/">
       <i class="fa fa-fw fa-dashboard"></i>&nbsp;
       <span>Dashboard</span>
     </a>
     <a
-      [routerLink]="['/contacts']"
       [routerLinkActive]="['router-link-active']"
-      tooltip="Contacts"
+      [routerLink]="['/contacts']"
+      class="list-group-item"
       container="body"
       style="z-index: 1000; position: relative;"
-      class="list-group-item"
+      tooltip="Contacts"
     >
       <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
       <span>Contacts</span>
     </a>
     <div class="header-fields">
       <div class="nested-menu">
-        <a class="list-group-item" (click)="addExpandClass('profile')">
+        <a (click)="addExpandClass('profile')" class="list-group-item">
           <span><i class="fa fa-user"></i>&nbsp; {{ user?.firstName }} {{ user?.lastName }}</span>
         </a>
-        <li class="nested" [class.expand]="showMenu === 'profile'">
+        <li [class.expand]="showMenu === 'profile'" class="nested">
           <ul class="submenu">
             <li>
               <a [routerLink]="['/profile']" routerLinkActive="router-link-active">
@@ -29,7 +29,7 @@
             </li>
 
             <li>
-              <a href="javascript:void(0);" (click)="onLoggedout()">
+              <a (click)="onLoggedout()" href="javascript:void(0);">
                 <span><i class="fa fa-fw fa-power-off"></i> Log Out</span>
               </a>
             </li>
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  <div class="toggle-button" [ngClass]="{ collapsed: collapsed }" (click)="toggleCollapsed()">
+  <div (click)="toggleCollapsed()" [ngClass]="{ collapsed: collapsed }" class="toggle-button">
     <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>&nbsp;
     <span>Collapse Sidebar</span>
   </div>

@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { LayoutComponent } from "@core/layout/layout.component";
-import { ContactListComponent } from "./contact-list/contact-list.component";
-import { ContactFormComponent } from "./contact-form/contact-form.component";
-import { ContactDetailsComponent } from "./contact-details/contact-details.component";
-import { ContactDetailsResolver } from "./contact.resolver";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {LayoutComponent} from "@core/layout/layout.component";
+import {ContactListComponent} from "./contact-list/contact-list.component";
+import {ContactFormComponent} from "./contact-form/contact-form.component";
+import {ContactDetailsComponent} from "./contact-details/contact-details.component";
+import {ContactDetailsResolver} from "./contact.resolver";
 
 const contactRoutes: Routes = [
   {
@@ -22,12 +22,12 @@ const contactRoutes: Routes = [
       {
         path: "edit/:contactId",
         component: ContactFormComponent,
-        resolve: { contactDetails: ContactDetailsResolver }
+        resolve: {contactDetails: ContactDetailsResolver}
       },
       {
         path: "details/:contactId",
         component: ContactDetailsComponent,
-        resolve: { contactDetails: ContactDetailsResolver }
+        resolve: {contactDetails: ContactDetailsResolver}
       }
     ]
   }
@@ -37,4 +37,6 @@ const contactRoutes: Routes = [
   imports: [RouterModule.forChild(contactRoutes)],
   exports: [RouterModule]
 })
-export class ContactRoutingModule {}
+export class ContactRoutingModule
+{
+}

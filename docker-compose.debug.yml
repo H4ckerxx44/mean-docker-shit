@@ -6,7 +6,7 @@ services:
     build: # specify the directory of the Dockerfile
       context: ./frontend
       dockerfile: debug.dockerfile
-    command: ["npm", "run", "start"]
+    command: [ "npm", "run", "start" ]
     container_name: mean_angular
     volumes:
       - ./frontend/src:/app/src
@@ -15,15 +15,15 @@ services:
       - "49153:49153"
     environment:
       - NODE_ENV=dev
-    links: 
-      - express 
+    links:
+      - express
 
   express: #name of the second service
     build: # specify the directory of the Dockerfile
       context: ./api
       dockerfile: debug.dockerfile
     container_name: mean_express
-    command : ["npm", "run", "dev:server"]
+    command: [ "npm", "run", "dev:server" ]
     volumes:
       - ./api:/api
     ports:

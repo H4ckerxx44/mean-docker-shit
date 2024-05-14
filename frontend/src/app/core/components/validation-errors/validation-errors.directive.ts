@@ -3,6 +3,7 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
+  EmbeddedViewRef,
   Inject,
   Input,
   OnDestroy,
@@ -10,24 +11,24 @@ import {
   Optional,
   Self,
   TemplateRef,
-  ViewContainerRef,
-  EmbeddedViewRef
+  ViewContainerRef
 } from '@angular/core';
-import { AbstractControl, ControlContainer, NgControl, ValidationErrors } from '@angular/forms';
-import { ValidationMessagesComponent, ValidationErrorComponent } from './Validation-messages.component';
-import { ValidationErrorAnchorDirective } from './validaion-error-anchor.directive';
-import { EMPTY, fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
-import { ControlErrorConfig, ControlErrorConfigProvider, FORM_ERRORS } from './providers';
-import { distinctUntilChanged, mapTo, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { FormActionDirective } from './form-action.directive';
-import { ErrorsMap } from './types';
+import {AbstractControl, ControlContainer, NgControl, ValidationErrors} from '@angular/forms';
+import {ValidationErrorComponent, ValidationMessagesComponent} from './Validation-messages.component';
+import {ValidationErrorAnchorDirective} from './validaion-error-anchor.directive';
+import {EMPTY, fromEvent, merge, NEVER, Observable, Subject} from 'rxjs';
+import {ControlErrorConfig, ControlErrorConfigProvider, FORM_ERRORS} from './providers';
+import {distinctUntilChanged, mapTo, startWith, switchMap, takeUntil} from 'rxjs/operators';
+import {FormActionDirective} from './form-action.directive';
+import {ErrorsMap} from './types';
 
 @Directive({
   selector:
     '[formControlName]:not([controlErrorsIgnore]), [formControl]:not([controlErrorsIgnore]), [formGroup]:not([controlErrorsIgnore]), [formGroupName]:not([controlErrorsIgnore]), [formArrayName]:not([controlErrorsIgnore]), [ngModel]:not([controlErrorsIgnore])',
   exportAs: 'controlError'
 })
-export class ValidationErrorsDirective implements OnInit, OnDestroy {
+export class ValidationErrorsDirective implements OnInit, OnDestroy
+{
   @Input('controlErrors') customErrors: ErrorsMap = {};
   // @Input() controlErrorsClass: string | undefined;
   @Input() controlErrorsTpl: TemplateRef<any> | undefined;
@@ -55,13 +56,20 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
     @Optional() private form: FormActionDirective,
     @Optional() @Self() private ngControl: NgControl,
     @Optional() @Self() private controlContainer: ControlContainer
-  ) {
+  )
+  {
     this.submit$ = this.form ? this.form.submit$ : EMPTY;
     this.reset$ = this.form ? this.form.reset$ : EMPTY;
     this.mergedConfig = this.buildConfig();
   }
 
-  ngOnInit() {
+  private get isInput()
+  {
+    return this.mergedConfig.blurPredicate(this.host.nativeElement);
+  }
+
+  ngOnInit()
+  {
     this.anchor = this.resolveAnchor();
     this.control = (this.controlContainer || this.ngControl).control;
     const hasAsyncValidator = !!this.control.asyncValidator;
@@ -72,12 +80,14 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
     let changesOnAsync$: Observable<any> = EMPTY;
     let changesOnBlur$: Observable<any> = EMPTY;
 
-    if (this.controlErrorsOnAsync && hasAsyncValidator) {
+    if (this.controlErrorsOnAsync && hasAsyncValidator)
+    {
       // hasAsyncThenUponStatusChange
       changesOnAsync$ = statusChanges$.pipe(startWith(true));
     }
 
-    if (this.controlErrorsOnBlur && this.isInput) {
+    if (this.controlErrorsOnBlur && this.isInput)
+    {
       const blur$ = fromEvent(this.host.nativeElement, 'focusout');
       // blurFirstThenUponChange
       changesOnBlur$ = blur$.pipe(switchMap(() => valueChanges$.pipe(startWith(true))));
@@ -98,8 +108,32 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
       .subscribe(() => this.valueChanges());
   }
 
-  private setError(text: string, error?: ValidationErrors) {
-    if (!this.ref) {
+  /**
+   * Explicit showing of a control error via some custom application code.
+   */
+  showError(): void
+  {
+    this.showError$.next();
+  }
+
+  /**
+   * Explicit hiding of a control error via some custom application code.
+   */
+  hideError(): void
+  {
+    this.setError(null);
+  }
+
+  ngOnDestroy()
+  {
+    this.destroy.next();
+    this.clearRefs();
+  }
+
+  private setError(text: string, error?: ValidationErrors)
+  {
+    if (!this.ref)
+    {
       const factory = this.resolver.resolveComponentFactory<ValidationErrorComponent>(
         this.mergedConfig.controlErrorComponent
       );
@@ -107,9 +141,12 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
     }
     const instance = this.ref.instance;
 
-    if (this.controlErrorsTpl) {
+    if (this.controlErrorsTpl)
+    {
       instance.createTemplate(this.controlErrorsTpl, error, text);
-    } else {
+    }
+    else
+    {
       instance.text = text;
     }
 
@@ -117,7 +154,8 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
     //   instance.customClass = this.controlErrorsClass;
     // }
 
-    if (!this.validationErrorAnchor && this.mergedConfig.controlErrorComponentAnchorFn) {
+    if (!this.validationErrorAnchor && this.mergedConfig.controlErrorComponentAnchorFn)
+    {
       this.customAnchorDestroyFn = this.mergedConfig.controlErrorComponentAnchorFn(
         this.host.nativeElement as HTMLElement,
         (this.ref.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement
@@ -125,77 +163,69 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Explicit showing of a control error via some custom application code.
-   */
-  showError(): void {
-    this.showError$.next();
-  }
-
-  /**
-   * Explicit hiding of a control error via some custom application code.
-   */
-  hideError(): void {
-    this.setError(null);
-  }
-
-  ngOnDestroy() {
-    this.destroy.next();
-    this.clearRefs();
-  }
-
-  private get isInput() {
-    return this.mergedConfig.blurPredicate(this.host.nativeElement);
-  }
-
-  private clearRefs(): void {
-    if (this.customAnchorDestroyFn) {
+  private clearRefs(): void
+  {
+    if (this.customAnchorDestroyFn)
+    {
       this.customAnchorDestroyFn();
       this.customAnchorDestroyFn = null;
     }
-    if (this.ref) {
+    if (this.ref)
+    {
       this.ref.destroy();
     }
     this.ref = null;
   }
 
-  private valueChanges() {
+  private valueChanges()
+  {
     const controlErrors = this.control.errors;
-    if (controlErrors) {
+    if (controlErrors)
+    {
       const [firstKey] = Object.keys(controlErrors);
       const getError = this.customErrors[firstKey] || this.globalErrors[firstKey];
-      if (!getError) {
+      if (!getError)
+      {
         return;
       }
 
       const text = typeof getError === 'function' ? getError(controlErrors[firstKey]) : getError;
-      if (this.isInput) {
+      if (this.isInput)
+      {
         this.host.nativeElement.parentElement.classList.add('error-tailor-has-error');
       }
       this.setError(text, controlErrors);
-    } else if (this.ref) {
-      if (this.isInput) {
+    }
+    else if (this.ref)
+    {
+      if (this.isInput)
+      {
         this.host.nativeElement.parentElement.classList.remove('error-tailor-has-error');
       }
       this.setError(null);
     }
   }
 
-  private resolveAnchor() {
-    if (this.validationErrorAnchor) {
+  private resolveAnchor()
+  {
+    if (this.validationErrorAnchor)
+    {
       return this.validationErrorAnchor.vcr;
     }
 
-    if (this.validationErrorAnchorParent) {
+    if (this.validationErrorAnchorParent)
+    {
       return this.validationErrorAnchorParent.vcr;
     }
     return this.vcr;
   }
 
-  private buildConfig(): ControlErrorConfig {
+  private buildConfig(): ControlErrorConfig
+  {
     return {
       ...{
-        blurPredicate(element) {
+        blurPredicate(element)
+        {
           return element.tagName === 'INPUT' || element.tagName === 'SELECT';
         },
         controlErrorComponent: ValidationMessagesComponent

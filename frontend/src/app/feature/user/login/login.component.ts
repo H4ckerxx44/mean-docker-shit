@@ -1,15 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import { LoginService } from "./login.service";
+import {Component, OnInit} from "@angular/core";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {LoginService} from "./login.service";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit
+{
   model: any = {};
   loading = false;
   returnUrl: string;
@@ -21,9 +22,12 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private toastrService: ToastrService
-  ) {}
+  )
+  {
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     // reset login status
     this.createForm();
     this.loginService.logout();
@@ -32,7 +36,8 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams[`returnUrl`] || "/";
   }
 
-  createForm(): void {
+  createForm(): void
+  {
     this.loginForm = this.formBuilder.group({
       userName: ["", Validators.required],
       password: ["", Validators.required],
@@ -40,8 +45,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(loginForm: UntypedFormGroup): void {
-    if (loginForm.valid) {
+  login(loginForm: UntypedFormGroup): void
+  {
+    if (loginForm.valid)
+    {
       this.loading = true;
       this.loginService
         .login(
@@ -49,16 +56,20 @@ export class LoginComponent implements OnInit {
           loginForm.controls.password.value
         )
         .subscribe(
-          data => {
+          data =>
+          {
             this.loading = false;
             this.router.navigate([this.returnUrl]);
           },
-          error => {
+          error =>
+          {
             this.toastrService.error(error);
             this.loading = false;
           }
         );
-    } else {
+    }
+    else
+    {
       this.toastrService.error("Please enter valid credentails");
     }
   }
