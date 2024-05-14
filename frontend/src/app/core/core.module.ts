@@ -22,7 +22,7 @@ import {NumberOnlyDirective} from "./directives/number-only.directive";
         useFactory()
         {
           return {
-            required: 'This field is required',
+            required: "This field is required",
             minlength: ({requiredLength, actualLength}) => `Expect ${requiredLength} but got ${actualLength}`,
             invalidEmailAddress: error => `Email Address is not valid`,
             invalidMobile: error => `Invalid Mobile number`,
@@ -32,8 +32,8 @@ import {NumberOnlyDirective} from "./directives/number-only.directive";
         },
         deps: []
       }
-      //controlErrorComponent: CustomControlErrorComponent, // Uncomment to see errors being rendered using a custom component
-      //controlErrorComponentAnchorFn: controlErrorComponentAnchorFn // Uncomment to see errors being positioned differently
+      // controlErrorComponent: CustomControlErrorComponent, // Uncomment to see errors being rendered using a custom component
+      // controlErrorComponentAnchorFn: controlErrorComponentAnchorFn // Uncomment to see errors being positioned differently
     })
   ],
   declarations: [AlertComponent, NumberOnlyDirective],

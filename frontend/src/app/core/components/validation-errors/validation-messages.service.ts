@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {UntypedFormGroup} from "@angular/forms";
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class ValidationService
 {
   constructor()
@@ -33,7 +33,7 @@ export class ValidationService
     // RFC 2822 compliant regex
     if (control.value && !control.value.match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/))
     {
-      return {'invalidMobile': true};
+      return {invalidMobile: true};
     }
     else
     {
@@ -46,7 +46,7 @@ export class ValidationService
     // RFC 2822 compliant regex
     if (control.value && !control.value.match(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/))
     {
-      return {'invalidPassword': true};
+      return {invalidPassword: true};
     }
     else
     {
@@ -78,12 +78,12 @@ export class ValidationService
       if (control.value !== matchingControl.value)
       {
         formGroup.get(matchingControlName).setErrors({passwordMustMatch: true});
-        return {'passwordMustMatch': true};
+        return {passwordMustMatch: true};
       }
       else
       {
         return null;
       }
-    }
+    };
   }
 }

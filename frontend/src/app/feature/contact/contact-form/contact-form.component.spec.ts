@@ -1,8 +1,8 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from "@angular/core/testing";
 
-import {ContactFormComponent} from './contact-form.component';
+import {ContactFormComponent} from "./contact-form.component";
 
-describe('ContactFormComponent', () =>
+describe("ContactFormComponent", () =>
 {
   let component: ContactFormComponent;
   let fixture: ComponentFixture<ContactFormComponent>;
@@ -22,7 +22,7 @@ describe('ContactFormComponent', () =>
     fixture.detectChanges();
   });
 
-  it('should create', () =>
+  it("should create", () =>
   {
     expect(component).toBeTruthy();
   });

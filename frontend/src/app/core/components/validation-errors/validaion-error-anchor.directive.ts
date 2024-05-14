@@ -1,8 +1,8 @@
-import {Directive, ViewContainerRef} from '@angular/core';
+import {Directive, ViewContainerRef} from "@angular/core";
 
 @Directive({
-  selector: '[validationErrorAnchor]',
-  exportAs: 'validationErrorAnchor'
+  selector: "[validationErrorAnchor]",
+  exportAs: "validationErrorAnchor"
 })
 export class ValidationErrorAnchorDirective
 {

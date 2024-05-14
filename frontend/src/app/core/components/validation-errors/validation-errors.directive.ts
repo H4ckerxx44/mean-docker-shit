@@ -12,24 +12,24 @@ import {
   Self,
   TemplateRef,
   ViewContainerRef
-} from '@angular/core';
-import {AbstractControl, ControlContainer, NgControl, ValidationErrors} from '@angular/forms';
-import {ValidationErrorComponent, ValidationMessagesComponent} from './Validation-messages.component';
-import {ValidationErrorAnchorDirective} from './validaion-error-anchor.directive';
-import {EMPTY, fromEvent, merge, NEVER, Observable, Subject} from 'rxjs';
-import {ControlErrorConfig, ControlErrorConfigProvider, FORM_ERRORS} from './providers';
-import {distinctUntilChanged, mapTo, startWith, switchMap, takeUntil} from 'rxjs/operators';
-import {FormActionDirective} from './form-action.directive';
-import {ErrorsMap} from './types';
+} from "@angular/core";
+import {AbstractControl, ControlContainer, NgControl, ValidationErrors} from "@angular/forms";
+import {ValidationErrorComponent, ValidationMessagesComponent} from "./Validation-messages.component";
+import {ValidationErrorAnchorDirective} from "./validaion-error-anchor.directive";
+import {EMPTY, fromEvent, merge, NEVER, Observable, Subject} from "rxjs";
+import {ControlErrorConfig, ControlErrorConfigProvider, FORM_ERRORS} from "./providers";
+import {distinctUntilChanged, mapTo, startWith, switchMap, takeUntil} from "rxjs/operators";
+import {FormActionDirective} from "./form-action.directive";
+import {ErrorsMap} from "./types";
 
 @Directive({
   selector:
-    '[formControlName]:not([controlErrorsIgnore]), [formControl]:not([controlErrorsIgnore]), [formGroup]:not([controlErrorsIgnore]), [formGroupName]:not([controlErrorsIgnore]), [formArrayName]:not([controlErrorsIgnore]), [ngModel]:not([controlErrorsIgnore])',
-  exportAs: 'controlError'
+    "[formControlName]:not([controlErrorsIgnore]), [formControl]:not([controlErrorsIgnore]), [formGroup]:not([controlErrorsIgnore]), [formGroupName]:not([controlErrorsIgnore]), [formArrayName]:not([controlErrorsIgnore]), [ngModel]:not([controlErrorsIgnore])",
+  exportAs: "controlError"
 })
 export class ValidationErrorsDirective implements OnInit, OnDestroy
 {
-  @Input('controlErrors') customErrors: ErrorsMap = {};
+  @Input("controlErrors") customErrors: ErrorsMap = {};
   // @Input() controlErrorsClass: string | undefined;
   @Input() controlErrorsTpl: TemplateRef<any> | undefined;
   @Input() controlErrorsOnAsync = true;
@@ -88,7 +88,7 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy
 
     if (this.controlErrorsOnBlur && this.isInput)
     {
-      const blur$ = fromEvent(this.host.nativeElement, 'focusout');
+      const blur$ = fromEvent(this.host.nativeElement, "focusout");
       // blurFirstThenUponChange
       changesOnBlur$ = blur$.pipe(switchMap(() => valueChanges$.pipe(startWith(true))));
     }
@@ -189,10 +189,10 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy
         return;
       }
 
-      const text = typeof getError === 'function' ? getError(controlErrors[firstKey]) : getError;
+      const text = typeof getError === "function" ? getError(controlErrors[firstKey]) : getError;
       if (this.isInput)
       {
-        this.host.nativeElement.parentElement.classList.add('error-tailor-has-error');
+        this.host.nativeElement.parentElement.classList.add("error-tailor-has-error");
       }
       this.setError(text, controlErrors);
     }
@@ -200,7 +200,7 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy
     {
       if (this.isInput)
       {
-        this.host.nativeElement.parentElement.classList.remove('error-tailor-has-error');
+        this.host.nativeElement.parentElement.classList.remove("error-tailor-has-error");
       }
       this.setError(null);
     }
@@ -226,7 +226,7 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy
       ...{
         blurPredicate(element)
         {
-          return element.tagName === 'INPUT' || element.tagName === 'SELECT';
+          return element.tagName === "INPUT" || element.tagName === "SELECT";
         },
         controlErrorComponent: ValidationMessagesComponent
       },

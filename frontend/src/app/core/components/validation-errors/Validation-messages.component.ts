@@ -1,18 +1,18 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, TemplateRef} from '@angular/core';
-import {ValidationErrors} from '@angular/forms';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, TemplateRef} from "@angular/core";
+import {ValidationErrors} from "@angular/forms";
 
 export type ErrorComponentTemplate = TemplateRef<{ $implicit: ValidationErrors; text: string }>;
 
 export interface ValidationErrorComponent
 {
-  //customClass: string;
+  // customClass: string;
   text: string | null;
 
   createTemplate?(tpl: ErrorComponentTemplate, error: ValidationErrors, text: string): void;
 }
 
 @Component({
-  selector: 'control-error',
+  selector: "control-error",
   template: `
     <label class="control-error" [class.hide-control]="hideError" *ngIf="!errorTemplate">{{ errorText }}</label>
     <ng-template *ngTemplateOutlet="errorTemplate; context: errorContext"></ng-template>

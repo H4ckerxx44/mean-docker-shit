@@ -1,27 +1,27 @@
-import {Directive, ElementRef} from '@angular/core';
-import {fromEvent, Observable} from 'rxjs';
-import {shareReplay, tap} from 'rxjs/operators';
+import {Directive, ElementRef} from "@angular/core";
+import {fromEvent, Observable} from "rxjs";
+import {shareReplay, tap} from "rxjs/operators";
 
 @Directive({
-  selector: 'form[controlError]'
+  selector: "form[controlError]"
 })
 export class FormActionDirective
 {
-  submit$: Observable<Event> = fromEvent(this.element, 'submit').pipe(
+  submit$: Observable<Event> = fromEvent(this.element, "submit").pipe(
     tap(() =>
     {
-      if (this.element.classList.contains('form-submitted') === false)
+      if (this.element.classList.contains("form-submitted") === false)
       {
-        this.element.classList.add('form-submitted');
+        this.element.classList.add("form-submitted");
       }
     }),
     shareReplay({refCount: true, bufferSize: 1})
   );
 
-  reset$: Observable<Event> = fromEvent(this.element, 'reset').pipe(
+  reset$: Observable<Event> = fromEvent(this.element, "reset").pipe(
     tap(() =>
     {
-      this.element.classList.remove('form-submitted');
+      this.element.classList.remove("form-submitted");
     }),
     shareReplay({refCount: true, bufferSize: 1})
   );

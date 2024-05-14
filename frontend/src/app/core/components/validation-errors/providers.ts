@@ -1,9 +1,9 @@
-import {FactorySansProvider, InjectionToken, Type, ValueSansProvider} from '@angular/core';
-import {ErrorsMap} from './types';
-import {ValidationErrorComponent} from './Validation-messages.component';
+import {FactorySansProvider, InjectionToken, Type, ValueSansProvider} from "@angular/core";
+import {ErrorsMap} from "./types";
+import {ValidationErrorComponent} from "./Validation-messages.component";
 
-export const FORM_ERRORS = new InjectionToken('FORM_ERRORS', {
-  providedIn: 'root',
+export const FORM_ERRORS = new InjectionToken("FORM_ERRORS", {
+  providedIn: "root",
   factory: () =>
   {
     return {};
@@ -29,4 +29,4 @@ export type ControlErrorConfig = {
   controlErrorComponentAnchorFn?: (hostElement: Element, errorElement: Element) => () => void;
 };
 
-export const ControlErrorConfigProvider = new InjectionToken<ControlErrorConfig>('ControlErrorConfigProvider');
+export const ControlErrorConfigProvider = new InjectionToken<ControlErrorConfig>("ControlErrorConfigProvider");
