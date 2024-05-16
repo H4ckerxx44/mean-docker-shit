@@ -10,18 +10,18 @@ import {SharedModule} from "../../shared/shared.module";
 import {LoginService} from "../../feature/user/login/login.service";
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent],
-  imports: [RouterModule, CommonModule, SharedModule],
-  exports: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent],
-  providers: [LoginService]
+    declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent],
+    imports: [RouterModule, CommonModule, SharedModule],
+    exports: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent],
+    providers: [LoginService]
 })
 export class LayoutModule
 {
-  static forRoot(): ModuleWithProviders<LayoutModule>
-  {
-    return {
-      ngModule: LayoutModule,
-      providers: []
-    };
-  }
+    static forRoot(): ModuleWithProviders<LayoutModule>
+    {
+        return {
+            ngModule: LayoutModule,
+            providers: []
+        };
+    }
 }

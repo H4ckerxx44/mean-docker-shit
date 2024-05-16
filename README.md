@@ -168,6 +168,7 @@ You can start the application in debug mode (database, api and frontend) using d
   ```
 
 It will run fronend `http://localhost:4200` and api on `http://localhost:3000`. you can also access mongodb on port
+
 27017.
 
 Also, it will automatically refresh (hot reload) your UI for code changes. That is also true for expressjs file changes.
@@ -214,7 +215,7 @@ we have considered 3 scenarios:
 1. **Using 2 containers** ([docker-compose.yml](/docker-compose.yml))
 
     * express: To host Frontend (Angular) and backend api (expressjs) together
-    * database: To host MongoDB 
+    * database: To host MongoDB
 
 _Note: If in above case we are using MongoDB as managed service then we will require only one container._
 

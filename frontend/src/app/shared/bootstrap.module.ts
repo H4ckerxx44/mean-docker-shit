@@ -11,28 +11,28 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {TypeaheadModule} from "ngx-bootstrap/typeahead";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TabsModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forRoot(),
-    CollapseModule.forRoot(),
-    TypeaheadModule.forRoot(),
-    ButtonsModule.forRoot(),
-    TimepickerModule.forRoot()
-  ],
-  exports: [
-    TabsModule,
-    BsDropdownModule,
-    TooltipModule,
-    ModalModule,
-    CollapseModule,
-    TypeaheadModule,
-    AlertModule,
-    ButtonsModule,
-    TimepickerModule
-  ]
+    imports: [
+        CommonModule,
+        TabsModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        TooltipModule.forRoot(),
+        ModalModule.forRoot(),
+        CollapseModule.forRoot(),
+        TypeaheadModule.forRoot(),
+        ButtonsModule.forRoot(),
+        TimepickerModule.forRoot()
+    ],
+    exports: [
+        TabsModule,
+        BsDropdownModule,
+        TooltipModule,
+        ModalModule,
+        CollapseModule,
+        TypeaheadModule,
+        AlertModule,
+        ButtonsModule,
+        TimepickerModule
+    ]
 })
 export class BootstrapModule
 {

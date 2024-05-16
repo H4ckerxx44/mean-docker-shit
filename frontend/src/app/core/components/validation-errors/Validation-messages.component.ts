@@ -5,59 +5,60 @@ export type ErrorComponentTemplate = TemplateRef<{ $implicit: ValidationErrors; 
 
 export interface ValidationErrorComponent
 {
-  // customClass: string;
-  text: string | null;
+    // customClass: string;
+    text: string | null;
 
-  createTemplate?(tpl: ErrorComponentTemplate, error: ValidationErrors, text: string): void;
+    createTemplate?(tpl: ErrorComponentTemplate, error: ValidationErrors, text: string): void;
 }
 
 @Component({
-  selector: "control-error",
-  template: `
-    <label class="control-error" [class.hide-control]="hideError" *ngIf="!errorTemplate">{{ errorText }}</label>
-    <ng-template *ngTemplateOutlet="errorTemplate; context: errorContext"></ng-template>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [
-    `
-      .hide-control {
-        display: none !important;
-      }
-      :host {
-        display: block;
-      }
-    `
-  ]
+    selector: "control-error",
+    template: `
+        <label class="control-error" [class.hide-control]="hideError" *ngIf="!errorTemplate">{{ errorText }}</label>
+        <ng-template *ngTemplateOutlet="errorTemplate; context: errorContext"></ng-template>
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styles: [
+        `
+            .hide-control {
+                display: none !important;
+            }
+
+            :host {
+                display: block;
+            }
+        `
+    ]
 })
 export class ValidationMessagesComponent implements ValidationErrorComponent
 {
-  errorText: string | null = null;
-  errorTemplate: ErrorComponentTemplate | undefined;
-  errorContext: { $implicit: ValidationErrors; text: string };
-  hideError = true;
+    errorText: string | null = null;
+    errorTemplate: ErrorComponentTemplate | undefined;
+    errorContext: { $implicit: ValidationErrors; text: string };
+    hideError = true;
 
-  constructor(private cdr: ChangeDetectorRef, private host: ElementRef<HTMLElement>)
-  {
-  }
-
-  // set customClass(className: string) {
-  //   this.host.nativeElement.classList.add(className);
-  // }
-
-  set text(value: string | null)
-  {
-    if (value !== this.errorText)
+    constructor(private cdr: ChangeDetectorRef, private host: ElementRef<HTMLElement>)
     {
-      this.errorText = value;
-      this.hideError = !value;
-      this.cdr.markForCheck();
     }
-  }
 
-  createTemplate(tpl: ErrorComponentTemplate, error: ValidationErrors, text: string)
-  {
-    this.errorTemplate = tpl;
-    this.errorContext = {$implicit: error, text};
-    this.cdr.markForCheck();
-  }
+    // set customClass(className: string) {
+    //   this.host.nativeElement.classList.add(className);
+    // }
+
+    set text(value: string | null)
+    {
+        if (value !== this.errorText)
+        {
+            this.errorText = value;
+            this.hideError = !value;
+            this.cdr.markForCheck();
+        }
+    }
+
+    createTemplate(tpl: ErrorComponentTemplate, error: ValidationErrors, text: string)
+    {
+        this.errorTemplate = tpl;
+        this.errorContext = {$implicit: error, text};
+        this.cdr.markForCheck();
+    }
 }

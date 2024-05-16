@@ -4,26 +4,26 @@ import {RegisterComponent} from "./register.component";
 
 describe("RegisterComponent", () =>
 {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+    let component: RegisterComponent;
+    let fixture: ComponentFixture<RegisterComponent>;
 
-  beforeEach(waitForAsync(() =>
-  {
-    TestBed.configureTestingModule({
-      declarations: [RegisterComponent]
-    })
-      .compileComponents();
-  }));
+    beforeEach(waitForAsync(() =>
+    {
+        TestBed.configureTestingModule({
+            declarations: [RegisterComponent]
+        })
+        .compileComponents();
+    }));
 
-  beforeEach(() =>
-  {
-    fixture = TestBed.createComponent(RegisterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() =>
+    {
+        fixture = TestBed.createComponent(RegisterComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it("should create", () =>
-  {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () =>
+    {
+        expect(component).toBeTruthy();
+    });
 });

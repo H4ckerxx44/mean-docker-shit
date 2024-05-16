@@ -11,16 +11,16 @@ import {ContactService} from "./contact.service";
 import {ContactDetailsResolver} from "./contact.resolver";
 
 @NgModule({
-  declarations: [ContactFormComponent, ContactListComponent, ContactDetailsComponent],
-  imports: [
-    ContactRoutingModule,
-    NgxDatatableModule,
-    ReactiveFormsModule,
-    CoreModule.forRoot(),
-    SharedModule.forRoot()
-  ],
-  providers: [ContactService, ContactDetailsResolver],
-  bootstrap: []
+    declarations: [ContactFormComponent, ContactListComponent, ContactDetailsComponent],
+    imports: [
+        ContactRoutingModule,
+        NgxDatatableModule,
+        ReactiveFormsModule,
+        CoreModule.forRoot(),
+        SharedModule.forRoot()
+    ],
+    providers: [ContactService, ContactDetailsResolver],
+    bootstrap: []
 })
 export class ContactModule
 {

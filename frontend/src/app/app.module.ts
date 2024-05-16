@@ -9,16 +9,16 @@ import {SharedModule} from "./shared/shared.module";
 import {CoreModule} from "@core/core.module";
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule.withServerTransition({appId: "serverApp"}),
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    SharedModule.forRoot(),
-    CoreModule.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule.withServerTransition({appId: "serverApp"}),
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        SharedModule.forRoot(),
+        CoreModule.forRoot()
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule
 {

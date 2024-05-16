@@ -4,26 +4,26 @@ import {ContactListComponent} from "./contact-list.component";
 
 describe("ContactListComponent", () =>
 {
-  let component: ContactListComponent;
-  let fixture: ComponentFixture<ContactListComponent>;
+    let component: ContactListComponent;
+    let fixture: ComponentFixture<ContactListComponent>;
 
-  beforeEach(waitForAsync(() =>
-  {
-    TestBed.configureTestingModule({
-      declarations: [ContactListComponent]
-    })
-      .compileComponents();
-  }));
+    beforeEach(waitForAsync(() =>
+    {
+        TestBed.configureTestingModule({
+            declarations: [ContactListComponent]
+        })
+        .compileComponents();
+    }));
 
-  beforeEach(() =>
-  {
-    fixture = TestBed.createComponent(ContactListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() =>
+    {
+        fixture = TestBed.createComponent(ContactListComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it("should create", () =>
-  {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () =>
+    {
+        expect(component).toBeTruthy();
+    });
 });

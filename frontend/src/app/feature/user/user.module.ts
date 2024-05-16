@@ -10,10 +10,10 @@ import {ProfileComponent} from "./profile/profile.component";
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, HomeComponent, ProfileComponent],
-  imports: [UserRoutingModule, HttpClientModule, CoreModule.forRoot(), SharedModule.forRoot()],
-  providers: [LoginService],
-  bootstrap: []
+    declarations: [LoginComponent, RegisterComponent, HomeComponent, ProfileComponent],
+    imports: [UserRoutingModule, HttpClientModule, CoreModule.forRoot(), SharedModule.forRoot()],
+    providers: [LoginService],
+    bootstrap: []
 })
 export class UserModule
 {

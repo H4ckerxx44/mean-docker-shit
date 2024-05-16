@@ -6,17 +6,17 @@ import {RouterModule} from "@angular/router";
 import {BootstrapModule} from "./bootstrap.module";
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, BootstrapModule],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, BootstrapModule]
+    declarations: [],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, BootstrapModule],
+    exports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, BootstrapModule]
 })
 export class SharedModule
 {
-  static forRoot(): ModuleWithProviders<SharedModule>
-  {
-    return {
-      ngModule: SharedModule,
-      providers: []
-    };
-  }
+    static forRoot(): ModuleWithProviders<SharedModule>
+    {
+        return {
+            ngModule: SharedModule,
+            providers: []
+        };
+    }
 }

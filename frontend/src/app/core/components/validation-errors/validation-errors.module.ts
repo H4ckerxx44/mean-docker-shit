@@ -11,32 +11,32 @@ const api = [ValidationMessagesComponent, ValidationErrorAnchorDirective, Valida
 
 
 @NgModule({
-  declarations: [
-    ValidationErrorsDirective,
-    ValidationErrorAnchorDirective,
-    ValidationMessagesComponent,
-    FormActionDirective
-  ],
-  imports: [CommonModule],
-  exports: [api]
+    declarations: [
+        ValidationErrorsDirective,
+        ValidationErrorAnchorDirective,
+        ValidationMessagesComponent,
+        FormActionDirective
+    ],
+    imports: [CommonModule],
+    exports: [api]
 })
 export class ValidaionErrorsModule
 {
-  static forRoot(config: ControlErrorConfig = {}): ModuleWithProviders<ValidaionErrorsModule>
-  {
-    return {
-      ngModule: ValidaionErrorsModule,
-      providers: [
-        ValidationService,
-        {
-          provide: ControlErrorConfigProvider,
-          useValue: config
-        },
-        {
-          provide: FORM_ERRORS,
-          ...config.errors
-        } as any
-      ]
-    };
-  }
+    static forRoot(config: ControlErrorConfig = {}): ModuleWithProviders<ValidaionErrorsModule>
+    {
+        return {
+            ngModule: ValidaionErrorsModule,
+            providers: [
+                ValidationService,
+                {
+                    provide: ControlErrorConfigProvider,
+                    useValue: config
+                },
+                {
+                    provide: FORM_ERRORS,
+                    ...config.errors
+                } as any
+            ]
+        };
+    }
 }

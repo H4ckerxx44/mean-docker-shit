@@ -3,12 +3,12 @@ const fileExists = require("file-exists");
 const env = require("node-env-file");
 
 module.exports = {
-  get: () =>
-  {
-    const envFileLocation = appRootPath + "/.env";
-    if (fileExists.sync(envFileLocation))
+    get: () =>
     {
-      env(envFileLocation);
-    }
-  },
+        const envFileLocation = appRootPath + "/.env";
+        if (fileExists.sync(envFileLocation))
+        {
+            env(envFileLocation);
+        }
+    },
 };

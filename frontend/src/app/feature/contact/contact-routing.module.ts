@@ -7,35 +7,35 @@ import {ContactDetailsComponent} from "./contact-details/contact-details.compone
 import {ContactDetailsResolver} from "./contact.resolver";
 
 const contactRoutes: Routes = [
-  {
-    path: "",
-    component: LayoutComponent,
-    children: [
-      {
+    {
         path: "",
-        component: ContactListComponent
-      },
-      {
-        path: "create",
-        component: ContactFormComponent
-      },
-      {
-        path: "edit/:contactId",
-        component: ContactFormComponent,
-        resolve: {contactDetails: ContactDetailsResolver}
-      },
-      {
-        path: "details/:contactId",
-        component: ContactDetailsComponent,
-        resolve: {contactDetails: ContactDetailsResolver}
-      }
-    ]
-  }
+        component: LayoutComponent,
+        children: [
+            {
+                path: "",
+                component: ContactListComponent
+            },
+            {
+                path: "create",
+                component: ContactFormComponent
+            },
+            {
+                path: "edit/:contactId",
+                component: ContactFormComponent,
+                resolve: {contactDetails: ContactDetailsResolver}
+            },
+            {
+                path: "details/:contactId",
+                component: ContactDetailsComponent,
+                resolve: {contactDetails: ContactDetailsResolver}
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(contactRoutes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(contactRoutes)],
+    exports: [RouterModule]
 })
 export class ContactRoutingModule
 {

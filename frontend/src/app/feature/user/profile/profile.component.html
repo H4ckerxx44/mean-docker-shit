@@ -1,110 +1,120 @@
 <tabset #staticTabs>
-  <tab heading="Profile">
-    <div class="container py-3">
-      <div class="row">
-        <div class="mx-auto col-sm-6">
-          <!-- form user info -->
-          <div class="card">
-            <div class="card-header">
-              <h4 class="mb-0">Basic Information</h4>
-            </div>
-            <div class="card-body">
-              <form [formGroup]="profileForm" autocomplete="off" class="form" name="profileForm" novalidate>
-                <div class="form-group row">
-                  <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                  <div class="col-lg-9">
-                    <input class="form-control" formControlName="firstName" name="firstName" type="text"/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                  <div class="col-lg-9">
-                    <input class="form-control" formControlName="lastName" name="lastName" type="text"/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                  <div class="col-lg-9">
-                    <input class="form-control" formControlName="email" name="email" type="email"/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-lg-3 col-form-label form-control-label">Mobile</label>
-                  <div class="col-lg-9">
-                    <input class="form-control" formControlName="mobile" name="mobile" type="text"/>
-                  </div>
-                </div>
+    <tab heading="Profile">
+        <div class="container py-3">
+            <div class="row">
+                <div class="mx-auto col-sm-6">
+                    <!-- form user info -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Basic Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="profileForm" autocomplete="off" class="form" name="profileForm"
+                                  novalidate>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" formControlName="firstName" name="firstName"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" formControlName="lastName" name="lastName"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" formControlName="email" name="email" type="email"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Mobile</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" formControlName="mobile" name="mobile" type="text"/>
+                                    </div>
+                                </div>
 
-                <div class="form-group row">
-                  <div class="col-lg-6"></div>
-                  <div class="col-lg-6">
-                    <div class="btn-group float-right mt-2" role="group">
-                      <input (click)="resetProfileForm()" class="btn btn-secondary" type="submit" value="Reset"/>
-                      <input (click)="updateProfile()" class="btn btn-primary" type="button" value="Update"/>
+                                <div class="form-group row">
+                                    <div class="col-lg-6"></div>
+                                    <div class="col-lg-6">
+                                        <div class="btn-group float-right mt-2" role="group">
+                                            <input (click)="resetProfileForm()" class="btn btn-secondary" type="submit"
+                                                   value="Reset"/>
+                                            <input (click)="updateProfile()" class="btn btn-primary" type="button"
+                                                   value="Update"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </div>
+                    <!-- /form user info -->
                 </div>
-              </form>
             </div>
-          </div>
-          <!-- /form user info -->
         </div>
-      </div>
-    </div>
-  </tab>
-  <tab heading="Password"
-  >
-    <div class="container py-3">
-      <div class="row">
-        <div class="mx-auto col-sm-6">
-          <!-- form user info -->
-          <div class="card">
-            <div class="card-header">
-              <h4 class="mb-0">Password Update</h4>
-            </div>
-            <div class="card-body">
-              <form [formGroup]="passwordForm" autocomplete="off" class="form" name="passwordForm" novalidate>
-                <div class="form-group row">
-                  <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                  <div class="col-lg-9">
-                    <input class="form-control" disabled formControlName="username" name="username" type="text"/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                  <div class="col-lg-9">
-                    <input class="form-control" formControlName="password" name="password" type="password"/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-lg-3 col-form-label form-control-label">Confirm</label>
-                  <div class="col-lg-9">
-                    <input class="form-control" formControlName="confirmPassword" name="confirmPassword"
-                           type="password"/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-lg-6"></div>
-                  <div class="col-lg-6">
-                    <div class="btn-group float-right mt-2" role="group">
-                      <input (click)="resetPasswordForm()" class="btn btn-secondary" type="submit" value="Reset"/>
-                      <input
-                        (click)="updatePassword()"
-                        [disabled]="passwordForm.invalid"
-                        class="btn btn-primary"
-                        type="button"
-                        value="Update"
-                      />
+    </tab>
+    <tab heading="Password"
+    >
+        <div class="container py-3">
+            <div class="row">
+                <div class="mx-auto col-sm-6">
+                    <!-- form user info -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Password Update</h4>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="passwordForm" autocomplete="off" class="form" name="passwordForm"
+                                  novalidate>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" disabled formControlName="username" name="username"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" formControlName="password" name="password"
+                                               type="password"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Confirm</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" formControlName="confirmPassword"
+                                               name="confirmPassword"
+                                               type="password"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-6"></div>
+                                    <div class="col-lg-6">
+                                        <div class="btn-group float-right mt-2" role="group">
+                                            <input (click)="resetPasswordForm()" class="btn btn-secondary" type="submit"
+                                                   value="Reset"/>
+                                            <input
+                                                    (click)="updatePassword()"
+                                                    [disabled]="passwordForm.invalid"
+                                                    class="btn btn-primary"
+                                                    type="button"
+                                                    value="Update"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </div>
+                    <!-- /form user info -->
                 </div>
-              </form>
             </div>
-          </div>
-          <!-- /form user info -->
         </div>
-      </div>
-    </div>
-  </tab
-  >
+    </tab
+    >
 </tabset>
