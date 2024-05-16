@@ -102,8 +102,10 @@ app.use(
 );
 
 
-const HOST = "0.0.0.0";
-const port = Number(process.env.EXPRESS_PORT) || 3000;
+const HOST = "127.0.0.1";
+// const port = Number(process.env.EXPRESS_PORT) || 3000;
+const port = 3000;
+
 // start server
 // Launch app to listen to specified port
 app.listen(port, () =>
